@@ -10,7 +10,7 @@
   },
   "files": ["extensions", "tests", "README.md"],
   "scripts": {
-    "test": "node tests/demo.mjs"
+    "test": "bun tests/demo.mjs"
   },
   "pi": {
     "extensions": ["./extensions/index.ts"]
