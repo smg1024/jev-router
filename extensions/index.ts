@@ -38,7 +38,7 @@ export default function (pi: ExtensionAPI) {
       const result = await registry.classify(jev, {
         state: { prompt: prompt.slice(0, 16_000), imageAttached: image },
         questions: {
-          model: { type: "choice", instructions: "Select a capable model for the task. Prefer lower cost for routine work and stronger reasoning for hard work. Zero rates may mean unknown pricing.", criteria },
+          model: { type: "choice", instructions: "Select a strong model for the task. Prefer models with stronger reasoning; choose a cheaper model only when the task is clearly trivial or routine. Zero rates may mean unknown pricing.", criteria },
           effort: { type: "choice", instructions: "Select the least thinking effort sufficient to complete this task reliably.", criteria: effort },
         },
       }, { signal: request.signal });
