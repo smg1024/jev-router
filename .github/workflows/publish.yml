@@ -1,0 +1,34 @@
+name: Publish to npm
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+  id-token: write # npm Trusted Publishing (OIDC) + provenance
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24 # npm >= 11.5.1, required for trusted publishing
+          registry-url: https://registry.npmjs.org
+      - uses: oven-sh/setup-bun@v2 # `npm test` runs under bun
+      - run: npm test
+      - name: Set version from release tag
+        env:
+          TAG: ${{ github.event.release.tag_name }}
+        run: npm version "${TAG#v}" --no-git-tag-version --allow-same-version
+      - name: Publish
+        env:
+          PRERELEASE: ${{ github.event.release.prerelease }}
+          # Fallback if not using trusted publishing: add an NPM_TOKEN repo
+          # secret and uncomment.
+          # NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if [ "$PRERELEASE" = "true" ]; then TAG_ARG="--tag next"; else TAG_ARG="--tag latest"; fi
+          npm publish --provenance --access public $TAG_ARG
