@@ -1,21 +1,33 @@
 {
   "name": "@smg1024/jev-router",
-  "version": "0.1.1",
+  "version": "0.1.3",
   "description": "Pi extension that adds a virtual jev/auto model routing each task to a physical model and thinking effort via Jev classification.",
   "type": "module",
-  "keywords": ["pi-package", "pi-extension"],
+  "keywords": [
+    "pi-package",
+    "pi-extension"
+  ],
   "license": "MIT",
-  "publishConfig": {"access": "public"},
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/smg1024/jev-router.git"
   },
-  "files": ["extensions", "tests", "README.md", "LICENSE"],
+  "files": [
+    "extensions",
+    "tests",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "test": "bun tests/demo.mjs"
   },
   "pi": {
-    "extensions": ["./extensions/index.ts"]
+    "extensions": [
+      "./extensions/index.ts"
+    ]
   },
   "peerDependencies": {
     "@earendil-works/pi-coding-agent": "*"
