@@ -1,6 +1,6 @@
 {
   "name": "@smg1024/jev-router",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Pi extension that adds a virtual jev/auto model routing each task to a physical model and thinking effort via Jev classification.",
   "type": "module",
   "keywords": ["pi-package", "pi-extension"],
